@@ -5,27 +5,29 @@ Raymond Connor Zachary Almedin
 import turtle as t
 import random as r
 
-## RAYMOND'S PORTION START ##
+## RAYMOND'S PORTION START (12/7/2024) ##
 
-# Creating the turtle and setting up the screen
+# Creating the turtle
 t = Turtle()
 t.shape("turtle")
 t.color("green")
 t.pensize(5)
 t.speed(0)
+t.home()
+
+# Setting up the screen
 s = t.Screen()
 s.title("Random Shapes")
 s.setup(width = 800, height = 600)
 s.bgcolor("blue")
-t.home()
 
 ## RAYMOND'S PORTION END ##
 
 ## ALS PORTION START ##
 
 # list to store shape functions for decision
-shapes = [square, circle, triangle, star, hexagon]
-shape_names = ["square", "circle", "triange", "star", "hexagon"] #corresponding names
+shapes = [square, circle, triangle, star, hexagon, diamond, cross, semicircle]
+shape_names = ["square", "circle", "triangle", "star", "hexagon", "diamond", "cross", "semicircle"] #corresponding names
 
 #selects a random shape and adds () to the end, made it a seperate function to be able to call it in a randomized loop
 def random_shape():
