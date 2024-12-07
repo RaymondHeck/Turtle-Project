@@ -8,7 +8,6 @@ import random as r
 ## RAYMOND'S PORTION START (12/7/2024) ##
 
 # Creating the turtle
-t = Turtle()
 t.shape("turtle")
 t.color("green")
 t.pensize(5)
@@ -25,10 +24,6 @@ s.bgcolor("blue")
 
 ## ALS PORTION START ##
 
-# list to store shape functions for decision
-shapes = [square, circle, triangle, star, hexagon, diamond, cross, semicircle]
-shape_names = ["square", "circle", "triangle", "star", "hexagon", "diamond", "cross", "semicircle"] #corresponding names
-
 #selects a random shape and adds () to the end, made it a seperate function to be able to call it in a randomized loop
 def random_shape():
     r.choice(shapes)()
@@ -40,11 +35,12 @@ def random_size():
     size = int()
     size = r.randint(25,150)
     return size
+    
 #Random pen color setter function
 def random_pen_color():
     rand = int()
     rand = r.randint(0,4)
-    lis = ["red", "blue", "green", "purple", "yellow"]
+    lis = ["red", "orange", "green", "purple", "yellow"]
     color = lis[rand]
     return color
     
@@ -55,15 +51,18 @@ def random_fill_color():
     lis = ["pink", "black", "wheat", "seagreen", "gray"]
     fill_color = lis[rand]
     return fill_color
+    
 #Sets a random angle for the shapes to be drawn in
 def t_direct():
     direction = r.randint(0,180)
     t.setheading(direction)
+    
 #Sets turtle cursor to a random coord
 def random_coord():
     t.penup()
     t.goto(r.randint(-200,200),r.randint(-200,200))
     t.pendown()
+    
 #Star shape
 def star():
     fill_col = random_fill_color()
@@ -78,6 +77,7 @@ def star():
         t.fd(size)
         t.right(144)
     t.end_fill()
+    
 #Hexagon shape
 def hexagon():
     fill_col = random_fill_color()
@@ -92,6 +92,7 @@ def hexagon():
         t.fd(size)
         t.left(300)
     t.end_fill()
+    
 #Diamond shape
 def diamond():
     fill_col = random_fill_color()
@@ -107,6 +108,7 @@ def diamond():
         t.fd(size)
         t.left(90)
     t.end_fill()
+    
 #Cross shape
 def cross():
     fill_col = random_fill_color()
@@ -124,6 +126,7 @@ def cross():
         t.fd(size)
         t.left(90)  
     t.end_fill()
+    
 #Semicircle shape (The best I could get)
 def semicircle():
     fill_col = random_fill_color()
@@ -140,22 +143,33 @@ def semicircle():
     #Drawing to fit the line to the dia. Circumference(360)/pi(half of the circle) ~= 115
     t.forward(115)
     t.end_fill()
+    
 #End Zachary
+
+# list to store shape functions for decision
+shapes = [square, circle, triangle, star, hexagon, diamond, cross, semicircle]
+shape_names = ["square", "circle", "triangle", "star", "hexagon", "diamond", "cross", "semicircle"] #corresponding names
 
 # If structure for user's choice if they want random shapes (Y/N)
 def user_decision(user_choice): # takes the users inputs as param for if structure
     if user_choice.upper() == "Y": # random shapes
-        for i in range(r.int(1, 6)): # generate 1 to 5 random shapes
-            #i put more in here later - AL (11/18/24)
+         for i in range(r.randint(1, 6)): # generate 1 to 5 random shapes
+            random_shape()
+             #i put more in here later - AL (11/18/24)
     elif user_choice.upper() == "N": # user selected shapes
         user_shapes = ""
         while user_shapes.upper() != "Q": #loop until user quits
-            print("Available Shapes: /n square /n circle")
+            print("Available Shapes: \n square \n circle \n triangle \n star \n hexagon \n diamond \n cross \n semicircle")
             user_shapes = input("Enter the shape ( or Q to quit): ").lower()
             if user_shapes in shape_names: # check if the input matches
+                globals()[user_shapes]()
                 #i put more in here later - AL (11/18/24)
+            elif user_shapes == "q":
+                print("Goodbye")
             else:
                 print("Invalid shape. Please choose a shape from the list or enter Q to quit")
+    elif user_choice.upper() == "Q":
+        print("Goodbye")
             
 ## ALS PORTION END ##
 
